@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Classic White Oxford Shirt",
+    "category": "shirt",
+    "price": 35,
+    "tags": ["formal", "office", "work", "white"],
+    "image": "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": 2,
+    "name": "Navy Slim Chinos",
+    "category": "pants",
+    "price": 45,
+    "tags": ["casual", "smart-casual", "navy", "date"],
+    "image": "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": 3,
+    "name": "Floral Summer Shirt",
+    "category": "shirt",
+    "price": 25,
+    "tags": ["beach", "party", "summer", "casual", "floral"],
+    "image": "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": 4,
+    "name": "Beige Linen Shorts",
+    "category": "shorts",
+    "price": 30,
+    "tags": ["summer", "beach", "casual", "beige"],
+    "image": "https://images.unsplash.com/photo-1591195853828-11db59a44f6b?auto=format&fit=crop&w=500&q=80"
+  },
+  {
+    "id": 5,
+    "name": "Black Denim Jacket",
+    "category": "jacket",
+    "price": 60,
+    "tags": ["streetwear", "casual", "night", "black"],
+    "image": "https://images.unsplash.com/photo-1576871337632-b9aef4c17ab9?auto=format&fit=crop&w=500&q=80"
+  }
+]

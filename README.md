@@ -12,7 +12,8 @@ Quick start
   - `cd server`
   - `npm install`
   - Add any required environment variables to the root `.env` or `server/.env`.
-  - Start your server (add a start script if needed). Example: `node index.js` or `npx nodemon index.js`.
+  - Start your server: `npm run start` (this runs `node index.js`).
+  - If you change environment variables, restart the server.
 
 Notes
 

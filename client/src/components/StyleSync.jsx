@@ -34,29 +34,51 @@ const StyleSync = () => {
       const filters = searchRes.data;
       console.log("AI Filters:", filters);
 
-      // 3. Filter Inventory (The "Expert System" Logic)
+      // 3. Filter Inventory (The "Smart Search" Logic)
       const matchedProducts = inventory.filter(item => {
-        let isMatch = true;
-        // Check Category (fuzzy match)
-        if (filters.category && !item.category.includes(filters.category.toLowerCase())) isMatch = false;
-        // Check Budget
-        if (filters.budget && item.price > filters.budget) isMatch = false;
-        // Check Color (simple check)
-        if (filters.color && !item.tags.includes(filters.color.toLowerCase())) isMatch = false;
-        return isMatch;
+        let score = 0; // We will score items based on how well they match
+
+        // RULE 1: Budget (Strict Rule)
+        // If it's too expensive, reject it immediately.
+        if (filters.budget && item.price > filters.budget) return false;
+
+        // RULE 2: Category matching (Fuzzy)
+        // If user asks for "shirt", finding "shirt" is +5 points.
+        if (filters.category && item.category.toLowerCase().includes(filters.category.toLowerCase())) {
+          score += 5;
+        }
+
+        // RULE 3: Tag Matching (The most important part)
+        // If user says "beach" (style) or "blue" (color), we check the tags.
+        const searchTerms = [filters.style, filters.color, filters.category].filter(Boolean);
+
+        searchTerms.forEach(term => {
+          const termLower = term.toLowerCase();
+          // Check if the term exists in the item's tags OR name
+          if (item.tags.includes(termLower) || item.name.toLowerCase().includes(termLower)) {
+            score += 3;
+          }
+        });
+
+        // KEEP THE ITEM IF: It has a positive score (meaning it matched something)
+        // OR if no specific style/category was asked (just budget), keep everything valid.
+        const hasSpecificFilters = filters.category || filters.style || filters.color;
+        return hasSpecificFilters ? score > 0 : true;
       });
 
+      console.log("Matched Products:", matchedProducts); // <--- Check this log in Browser Console!
+
       // 4. Get Final Stylist Response from AI
-      const chatRes = await axios.post('http://localhost:5000/api/chat', { 
+      const chatRes = await axios.post('http://localhost:5000/api/chat', {
         query: userMsg.text,
-        products: matchedProducts 
+        products: matchedProducts
       });
 
       // 5. Add Bot Response
-      setMessages(prev => [...prev, { 
-        type: 'bot', 
+      setMessages(prev => [...prev, {
+        type: 'bot',
         text: chatRes.data.message,
-        products: matchedProducts 
+        products: matchedProducts
       }]);
 
     } catch (error) {
@@ -68,7 +90,7 @@ const StyleSync = () => {
 
   return (
     <div className="max-w-md mx-auto bg-gray-50 h-[600px] flex flex-col rounded-xl shadow-2xl overflow-hidden border border-gray-200 mt-10">
-      
+
       {/* Header */}
       <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-4 flex items-center gap-2 text-white shadow-md">
         <Sparkles size={20} />
@@ -87,7 +109,7 @@ const StyleSync = () => {
                 {msg.text}
               </div>
             </div>
-            
+
             {/* Render Product Cards if available */}
             {msg.products && msg.products.length > 0 && (
               <div className="flex gap-2 mt-2 ml-10 overflow-x-auto w-full pb-2">
@@ -104,15 +126,15 @@ const StyleSync = () => {
       {/* Input Area */}
       <div className="p-4 bg-white border-t border-gray-100">
         <div className="flex gap-2">
-          <input 
-            type="text" 
+          <input
+            type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSend()}
             placeholder="Describe the occasion or outfit..."
             className="flex-1 p-3 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
           />
-          <button 
+          <button
             onClick={handleSend}
             disabled={loading}
             className="bg-blue-600 text-white p-3 rounded-xl hover:bg-blue-700 disabled:opacity-50 transition-colors"

@@ -19,3 +19,9 @@ yarn-error.log*
 
 # Vite
 /client/dist/
+
+# Editor settings
+.vscode/
+
+# Server logs
+/server/logs/

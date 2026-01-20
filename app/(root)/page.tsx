@@ -1,8 +1,7 @@
 import { Button } from '@/components/ui/button';
-
 const Home = () => (
   <>
-    <Button>Click me</Button>
+    <Button className="book-btn">Click me</Button>
   </>
 );
 

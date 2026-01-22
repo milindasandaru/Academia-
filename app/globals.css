@@ -1,23 +1,35 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 
 @theme {
-  /* Custom Colors */
+  /* Core theme tokens used by Tailwind utilities */
+  --color-background: #ffffff;
+  --color-foreground: #0b1324;
   --color-primary: #e7c9a5;
+  --color-primary-foreground: #16191e;
+  --color-secondary: #eed1ac;
+  --color-secondary-foreground: #16191e;
+  --color-muted: #e2e8f0;
+  --color-muted-foreground: #475569;
+  --color-accent: #f8f8ff;
+  --color-accent-foreground: #16191e;
+  --color-destructive: #ef3a4b;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #cbd5e1;
+  --color-input: #cbd5e1;
+  --color-ring: #e7c9a5;
+
+  /* Domain palette */
   --color-primary-admin: #25388c;
-  
   --color-green: #027a48;
   --color-green-100: #ecfdf3;
   --color-green-400: #4c7b62;
   --color-green-500: #2cc171;
   --color-green-800: #027a48;
-  
   --color-red: #ef3a4b;
   --color-red-400: #f46f70;
   --color-red-500: #e27233;
   --color-red-800: #ef3a4b;
-  
   --color-blue-100: #0089f1;
-  
   --color-light-100: #d6e0ff;
   --color-light-200: #eed1ac;
   --color-light-300: #f8f8ff;
@@ -26,7 +38,6 @@
   --color-light-600: #f9fafb;
   --color-light-700: #e2e8f0;
   --color-light-800: #f8fafc;
-  
   --color-dark-100: #16191e;
   --color-dark-200: #3a354e;
   --color-dark-300: #232839;
@@ -35,15 +46,14 @@
   --color-dark-600: #333c5c;
   --color-dark-700: #464f6f;
   --color-dark-800: #1e2230;
-  
   --color-gray-100: #cbd5e1;
-  
+
   /* Font Families */
-  --font-bebas-neue: "Bebas Neue", sans-serif;
-  
+  --font-bebas-neue: 'Bebas Neue', sans-serif;
+
   /* Custom Breakpoints */
   --breakpoint-xs: 480px;
-  
+
   --radius: 0.5rem;
 }
 
@@ -74,7 +84,7 @@
     --chart-4: 43 74% 66%;
     --chart-5: 27 87% 67%;
   }
-  
+
   .dark {
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
@@ -150,7 +160,9 @@
 
   /* Borrowed Book */
   .borrowed-book {
-    @apply gradient-vertical p-5 rounded-2xl xs:w-min w-full relative;
+    /* Custom gradient inlined because @apply only supports Tailwind utilities */
+    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+    @apply p-5 rounded-2xl xs:w-min w-full relative;
   }
 
   .borrowed-book_cover {
@@ -339,11 +351,19 @@
   }
 
   .auth-form {
-    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top bg-dark-100 px-5 py-10;
+    /* Background image + layout */
+    background-image: url('/images/pattern.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #0f172a; /* fallback */
+    @apply my-auto flex h-full min-h-screen flex-1 items-center px-5 py-10;
   }
 
   .auth-box {
-    @apply gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10;
+    /* Custom gradient inlined because @apply only supports Tailwind utilities */
+    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+    @apply mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10;
   }
 
   .auth-illustration {
@@ -352,7 +372,13 @@
 
   /* Root */
   .root-container {
-    @apply flex min-h-screen flex-1 flex-col bg-pattern bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+    /* Background image + layout */
+    background-image: url('/images/pattern.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #0f172a; /* fallback */
+    @apply flex min-h-screen flex-1 flex-col px-5 xs:px-10 md:px-16;
   }
 
   /* Book Details */

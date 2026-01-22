@@ -351,9 +351,13 @@
   }
 
   .auth-form {
-    /* Custom background image inlined because @apply only supports Tailwind utilities */
-    background-image: url('/public/images/pattern.webp');
-    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-cover bg-top bg-dark-100 px-5 py-10;
+    /* Background image + layout */
+    background-image: url('/images/pattern.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #0f172a; /* fallback */
+    @apply my-auto flex h-full min-h-screen flex-1 items-center px-5 py-10;
   }
 
   .auth-box {
@@ -368,9 +372,13 @@
 
   /* Root */
   .root-container {
-    /* Custom background image inlined because @apply only supports Tailwind utilities */
-    background-image: url('/public/images/pattern.webp');
-    @apply flex min-h-screen flex-1 flex-col bg-cover bg-top bg-dark-100 px-5 xs:px-10 md:px-16;
+    /* Background image + layout */
+    background-image: url('/images/pattern.webp');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-color: #0f172a; /* fallback */
+    @apply flex min-h-screen flex-1 flex-col px-5 xs:px-10 md:px-16;
   }
 
   /* Book Details */

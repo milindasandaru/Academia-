@@ -1,7 +1,10 @@
-import { Button } from '@/components/ui/button';
+import BookList from '@/components/BookList';
+import BookOverview from '@/components/BookOverview';
+
 const Home = () => (
   <>
-    <Button className="book-btn">Click me</Button>
+    <BookOverview />
+    <BookList />
   </>
 );
 

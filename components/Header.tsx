@@ -3,13 +3,16 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 const Header = () => {
   const pathname = usePathname();
 
   return (
     <header className="header flex my-10 justify-between gap-5 text-white">
-      <Link href="/">Academia</Link>
+      <Link href="/">
+        <Image src="/Group 14.png" alt="Logo" width={24} height={24} />
+      </Link>
 
       <ul className="flex flex-row items-center gap-8">
         <li>
